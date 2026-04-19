@@ -1,53 +1,76 @@
-import Link from "next/link";
-import { Sparkles } from "lucide-react";
+"use client";
 
-const links = {
-  Product: [
-    { label: "AI Analysis", href: "/analysis" },
-    { label: "Marketplace", href: "/marketplace" },
-    { label: "Pricing", href: "/pricing" },
-  ],
-  Company: [
-    { label: "Blog", href: "/blog" },
-    { label: "About", href: "/about" },
-    { label: "Contact", href: "/contact" },
-  ],
-  Legal: [
-    { label: "Privacy Policy", href: "/privacy" },
-    { label: "Terms of Service", href: "/terms" },
-  ],
-};
+import Link from "next/link";
+import Image from "next/image";
+import { Instagram, Facebook, Linkedin, Youtube } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 export function Footer() {
+  const pathname = usePathname();
+  
+  if (pathname?.startsWith("/login") || pathname?.startsWith("/register")) {
+    return null;
+  }
+
+  const socials = [
+    { name: "Instagram", icon: <Instagram className="h-5 w-5" />, url: "https://instagram.com/flareher" },
+    { name: "Facebook", icon: <Facebook className="h-5 w-5" />, url: "https://facebook.com/flareher" },
+    { name: "LinkedIn", icon: <Linkedin className="h-5 w-5" />, url: "https://linkedin.com/company/flareher" },
+    { name: "YouTube", icon: <Youtube className="h-5 w-5" />, url: "https://youtube.com/flareher" },
+  ];
+
+  const footerLinks = {
+    shop: ["Skincare", "Haircare", "Makeup", "Body Care", "New Arrivals", "Best Sellers"],
+    company: ["About Us", "Our Mission", "Sustainability", "Careers", "Blog", "Contact Us"],
+    help: ["FAQ", "Shipping & Delivery", "Returns & Exchanges", "Track Order", "Privacy Policy", "Terms of Service"],
+  };
+
   return (
-    <footer className="mt-auto border-t border-border bg-surface">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          <div>
-            <Link href="/" className="flex items-center gap-2">
-              <Sparkles className="h-5 w-5 text-primary-600" />
-              <span className="text-lg font-bold text-primary-600">
-                FlareHer
-              </span>
+    <footer className="bg-white border-t border-border">
+      <div className="container mx-auto px-6 md:px-12 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          <div className="lg:col-span-1">
+            <Link href="/" className="mb-6 flex items-center">
+              <Image src="/logo.png" alt="FlareHer" width={110} height={36} className="object-contain" />
             </Link>
-            <p className="mt-3 text-sm text-textMuted">
-              AI-powered skincare analysis tailored to you.
+            <p className="text-sm text-textSecondary mb-8 leading-relaxed pr-4">
+              Premium beauty products designed by women, for women. Ethically sourced, cruelty-free, and made with love.
             </p>
+
+            <div>
+              <h5 className="text-sm font-semibold text-textPrimary mb-4">
+                Follow Us
+              </h5>
+              <div className="flex flex-wrap gap-3">
+                {socials.map((social) => (
+                  <a
+                    key={social.name}
+                    href={social.url}
+                    className="h-10 w-10 rounded-full flex items-center justify-center bg-primary-600 text-white transition-all hover:-translate-y-1 hover:shadow-md hover:bg-primary-700"
+                    aria-label={`Follow us on ${social.name}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {social.icon}
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
 
-          {Object.entries(links).map(([group, items]) => (
-            <div key={group}>
-              <p className="mb-3 text-sm font-semibold text-textPrimary">
-                {group}
-              </p>
-              <ul className="space-y-2">
+          {Object.entries(footerLinks).map(([category, items]) => (
+            <div key={category}>
+              <h4 className="text-lg font-serif font-medium mb-6 capitalize text-textPrimary">
+                {category}
+              </h4>
+              <ul className="space-y-3">
                 {items.map((item) => (
-                  <li key={item.label}>
+                  <li key={item}>
                     <Link
-                      href={item.href}
-                      className="text-sm text-textMuted transition-colors hover:text-primary-600"
+                      href={`/${category === "shop" ? "products" : category}/${item.toLowerCase().replace(/\s+/g, "-")}`}
+                      className="text-sm text-textSecondary hover:text-primary-600 transition-colors hover:underline"
                     >
-                      {item.label}
+                      {item}
                     </Link>
                   </li>
                 ))}
@@ -56,13 +79,13 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-6 sm:flex-row">
+        <div className="mt-16 pt-8 border-t border-border/60 flex flex-col items-center justify-between gap-4 md:flex-row">
           <p className="text-sm text-textMuted">
-            © {new Date().getFullYear()} FlareHer. All rights reserved.
+            © {new Date().getFullYear()} FlareHer Beauty. All rights reserved.
           </p>
-          <p className="text-xs text-textMuted">
-            Built with ❤️ for skincare lovers
-          </p>
+          <div className="flex gap-4">
+             <span className="text-xs text-textMuted">Built for diverse beauty</span>
+          </div>
         </div>
       </div>
     </footer>

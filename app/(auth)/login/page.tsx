@@ -1,45 +1,49 @@
 import { LoginForm } from "@/components/forms/login-form";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function LoginPage() {
   return (
-    <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center bg-gradient-to-br from-primary-50 via-secondary-50 to-accent-50 px-4 py-8 sm:py-12">
-      <div className="w-full max-w-md">
-        <div className="mb-6 text-center sm:mb-8">
-          <h1 className="text-3xl font-light text-textPrimary sm:text-4xl">
-            Welcome{" "}
-            <span className="italic text-primary-600">
-              Back
-            </span>
+    <div className="relative flex min-h-[calc(100vh-4rem)] items-center justify-center overflow-hidden bg-background px-4 py-8 sm:py-12">
+      <div className="absolute inset-0 z-0 opacity-40 pointer-events-none">
+        <div className="absolute -left-[10%] top-[20%] h-[500px] w-[500px] rounded-full bg-primary-500/20 blur-[100px]" />
+        <div className="absolute -right-[10%] bottom-[10%] h-[600px] w-[600px] rounded-full bg-accent-500/20 blur-[120px]" />
+      </div>
+
+      <div className="relative z-10 w-full max-w-md">
+        <div className="mb-8 text-center">
+          <div className="flex justify-center mb-4">
+            <Image src="/logo.png" alt="FlareHer" width={120} height={40} className="object-contain" />
+          </div>
+          <h1 className="font-serif text-3xl text-textPrimary sm:text-4xl">
+            Welcome <span className="italic text-primary-500">Back</span>
           </h1>
-          <p className="mt-2 text-sm text-textSecondary sm:text-base">
-            Sign in to continue your beauty journey
+          <p className="mt-3 text-sm text-textSecondary sm:text-base">
+            Continue your skin &amp; hair journey
           </p>
         </div>
 
-        <div className="rounded-2xl border border-border bg-background p-6 shadow-lg sm:p-8">
+        <div className="overflow-hidden rounded-3xl border border-white/20 bg-surface/60 p-6 shadow-2xl backdrop-blur-xl sm:p-8">
           <LoginForm />
 
-          <div className="mt-6 text-center text-sm">
-            <span className="text-textMuted">
-              Don't have an account?{" "}
-            </span>
+          <div className="mt-8 text-center text-sm">
+            <span className="text-textMuted">New to FlareHer? </span>
             <Link
               href="/register"
-              className="font-medium text-primary-600 hover:text-primary-700"
+              className="font-semibold text-primary-600 transition-colors hover:text-primary-500"
             >
-              Sign up
+              Create an account
             </Link>
           </div>
         </div>
 
-        <p className="mt-6 text-center text-xs text-textMuted">
-          By continuing, you agree to our{" "}
-          <Link href="/terms" className="underline hover:text-textSecondary">
+        <p className="mt-8 text-center text-xs text-textMuted">
+          By signing in, you agree to our{" "}
+          <Link href="/terms" className="underline transition-colors hover:text-textSecondary">
             Terms of Service
           </Link>{" "}
           and{" "}
-          <Link href="/privacy" className="underline hover:text-textSecondary">
+          <Link href="/privacy" className="underline transition-colors hover:text-textSecondary">
             Privacy Policy
           </Link>
         </p>

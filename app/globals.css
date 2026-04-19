@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@variant dark (&:is(.never-dark *));
+
 @theme {
   --color-primary-50: #fef5f8;
   --color-primary-100: #fde8f1;
@@ -60,66 +62,6 @@
   --color-textMuted: #a8a29e;
 }
 
-[data-theme="dark"] {
-  --color-primary-50: #84193e;
-  --color-primary-100: #9d1a47;
-  --color-primary-200: #bd1d56;
-  --color-primary-300: #db2d6e;
-  --color-primary-400: #ed4e8c;
-  --color-primary-500: #f578aa;
-  --color-primary-600: #f9aaca;
-  --color-primary-700: #fcd1e4;
-  --color-primary-800: #fde8f1;
-  --color-primary-900: #fef5f8;
-
-  --color-secondary-50: #224324;
-  --color-secondary-100: #285128;
-  --color-secondary-200: #2f6530;
-  --color-secondary-300: #3a7f3a;
-  --color-secondary-400: #4c9d4c;
-  --color-secondary-500: #72b872;
-  --color-secondary-600: #a4d3a4;
-  --color-secondary-700: #cde6cd;
-  --color-secondary-800: #e6f3e6;
-  --color-secondary-900: #f4f9f4;
-
-  --color-accent-50: #274753;
-  --color-accent-100: #2a5462;
-  --color-accent-200: #2b6577;
-  --color-accent-300: #2f7d92;
-  --color-accent-400: #379aad;
-  --color-accent-500: #52b6c7;
-  --color-accent-600: #89d1dc;
-  --color-accent-700: #b9e4ea;
-  --color-accent-800: #daf1f4;
-  --color-accent-900: #f0f9fa;
-
-  --color-neutral-50: #0a0a0a;
-  --color-neutral-100: #171717;
-  --color-neutral-200: #262626;
-  --color-neutral-300: #404040;
-  --color-neutral-400: #525252;
-  --color-neutral-500: #737373;
-  --color-neutral-600: #a3a3a3;
-  --color-neutral-700: #d4d4d4;
-  --color-neutral-800: #e5e5e5;
-  --color-neutral-900: #f5f5f5;
-
-  --color-success: #72b872;
-  --color-warning: #f59e0b;
-  --color-error: #f578aa;
-  --color-info: #52b6c7;
-
-  --color-background: #0a0a0a;
-  --color-surface: #171717;
-  --color-surfaceElevated: #262626;
-  --color-border: #262626;
-
-  --color-textPrimary: #f5f5f5;
-  --color-textSecondary: #d4d4d4;
-  --color-textMuted: #737373;
-}
-
 @layer base {
   body {
     @apply bg-background text-textPrimary antialiased;
@@ -130,4 +72,20 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-playfair), serif;
   }
+}
+
+.ant-btn-primary {
+  background-color: #db2d6e !important;
+  color: #ffffff !important;
+  border-color: #db2d6e !important;
+}
+
+.ant-btn-primary:hover {
+  background-color: #ed4e8c !important;
+  border-color: #ed4e8c !important;
+  color: #ffffff !important;
+}
+
+.ant-btn-default {
+  color: #292524 !important;
 }
